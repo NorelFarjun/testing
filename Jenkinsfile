@@ -56,6 +56,21 @@ pipeline {
             }
         }
         
+        stage('push new terraform state to repo') {
+            steps {
+                sh '''
+                    cd terraform_state
+                    git add *
+                    git commit -m new "state: $(date +"%H:%M:%S---%m_%d_%Y")"
+                    git push -f --set-upstream https://${GITHUB_TOKEN}@github.com/NorelFarjun/testing2.git main
+                '''
+            }
+        }
+        
+        
+        
+        
+        
         
         
         
