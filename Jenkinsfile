@@ -63,6 +63,7 @@ pipeline {
                     git config --global user.email "norelp123@gmail.com"
                     git config --global user.name "NorelFarjun"
                     cd terraform_state
+                    touch teset1.txt
                     git add *
                     git commit -m "state: $(date +"%H:%M:%S---%m_%d_%Y")"
                     git push -f --set-upstream https://${GITHUB_TOKEN}@github.com/NorelFarjun/testing2.git main
