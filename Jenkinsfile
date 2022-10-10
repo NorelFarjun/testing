@@ -59,6 +59,9 @@ pipeline {
         stage('push new terraform state to repo') {
             steps {
                 sh '''
+                
+                    git config --global user.email "norelp123@gmail.com"
+                    git config --global user.name "NorelFarjun"
                     cd terraform_state
                     git add *
                     git commit -m "state: $(date +"%H:%M:%S---%m_%d_%Y")"
