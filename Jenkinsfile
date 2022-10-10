@@ -66,7 +66,7 @@ pipeline {
                     touch teset1.txt
                     git add *
                     git commit -m "state: $(date +"%H:%M:%S---%m_%d_%Y")"
-                    git push -f --set-upstream https://${GITHUB_TOKEN}@github.com/NorelFarjun/testing2.git main
+                    git push -f --set-upstream https://${GITHUB_TOKEN}@github.com/NorelFarjun/testing2.git 
                 '''
             }
         }
