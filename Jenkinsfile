@@ -15,16 +15,63 @@ pipeline {
     
     
     stages{
-        stage("aa"){
-            steps{
-                sh "echo hi"
+        
+        stage('clean workspace') {
+            steps {
+                cleanWs()
             }
         }
-    }
-    
-    
-    
-    
+        
+        stage('git pull') {
+            steps {
+                sh '''
+                    mkdir terraform_state
+                    cd terraform_state
+                    git init
+                    git pull https://github.com/NorelFarjun/testing.git main
+                    
+                '''
+            }
+        }
+        
+        stage('terraform init and plan') {
+            steps {
+                sh '''
+                    cd terraform_state
+                    terraform init -no-color
+                    terraform plan -no-color
+                '''
+            }
+        }
+        
+        stage('test') {
+            steps {
+                sh "echo test scrips"
+            }
+        }
+        
+        stage('terraform apply') {
+            steps {
+                sh 'echo terraform apply'
+            }
+        }
+        
+        stage('push new terraform state to repo') {
+            steps {
+                sh '''
+                    cd terraform_state
+                    git add *
+                    git commit -m new "state: $(date +"%H:%M:%S---%m_%d_%Y")"
+                    git push -f --set-upstream https://${GITHUB_TOKEN}@github.com/NorelFarjun/testing.git main
+                '''
+            }
+        }
+        
+        stage('clean workspace') {
+            steps {
+                cleanWs()
+            }
+        }
     
     
     
