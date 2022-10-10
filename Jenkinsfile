@@ -34,10 +34,36 @@ pipeline {
             }
         }
         
+        stage('terraform init and plan') {
+            steps {
+                sh '''
+                    cd terraform_state
+                    terraform init -no-color
+                    terraform plan -no-color
+                '''
+            }
+        }
         
         
         
-    }
+        
+        
+        
+        
+        
+        
+        
+        
+  }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 /*
     agent any
