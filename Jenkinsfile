@@ -1,5 +1,16 @@
 pipeline {
     agent any
+    
+    stages{
+        stage("aa"){
+            steps{
+                sh "echo hi"
+            }
+        }
+    }
+}
+/*
+    agent any
     tools{
         terraform 'terraform-11'
     }
@@ -66,4 +77,4 @@ pipeline {
             }
         }
     }
-}
+}*/
