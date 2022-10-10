@@ -44,8 +44,17 @@ pipeline {
             }
         }
         
+        stage('test') {
+            steps {
+                sh "echo test scrips"
+            }
+        }
         
-        
+        stage('terraform apply') {
+            steps {
+                sh 'echo terraform apply'
+            }
+        }
         
         
         
